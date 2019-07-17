@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    android:id="@+id/constraintView2"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="140dp"
+    android:layout_height="170dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="130dp"
+        android:layout_height="160dp"
+        app:cardCornerRadius="3dp"
+        app:cardMaxElevation="2dp"
+        android:layout_marginLeft="2dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/constraintView2">
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/constraintView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="110dp"
+                android:src="@drawable/bc"
+                android:scaleType="fitXY"
+                app:layout_constraintTop_toTopOf="@+id/constraintView"/>
+
+            <TextView
+                android:id="@+id/medicine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="115dp"
+                android:gravity="center"
+                android:text="R17"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"
+                app:layout_constraintTop_toTopOf="@id/imageView" />
+
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v7.widget.CardView>
+</android.support.constraint.ConstraintLayout>

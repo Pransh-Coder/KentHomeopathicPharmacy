@@ -72,9 +72,9 @@ public class Login extends AppCompatActivity {
                 else
                 {
                     login();
-                    Intent intent = new Intent(getApplicationContext(),Drawerlayout.class);
-                    startActivity(intent);
 
+                    /*Intent intent = new Intent(getApplicationContext(),Drawerlayout.class);
+                    startActivity(intent);*/
                 }
 
             }
@@ -88,6 +88,12 @@ public class Login extends AppCompatActivity {
                 Toast.makeText(Login.this, ""+response, Toast.LENGTH_SHORT).show();
                 //System.out.println(response);
                 Log.i("My success",""+response);
+
+                if(response.equalsIgnoreCase("true"))
+                {
+                    Intent intent = new Intent(getApplicationContext(),Drawerlayout.class);
+                    startActivity(intent);
+                }
             }
         }, new Response.ErrorListener() {
             @Override
