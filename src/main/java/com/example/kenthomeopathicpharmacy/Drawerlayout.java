@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -29,6 +30,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class Drawerlayout extends AppCompatActivity {
+
+    Button view_all_items;
 
     //Navigation Drawer
     private DrawerLayout drawerLayout;
@@ -63,6 +66,7 @@ public class Drawerlayout extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drawerlayout);
 
+        view_all_items= findViewById(R.id.view_all);
 
         recyclerView =(RecyclerView)findViewById(R.id.recyclerView);            //for category lists
         queue1=Volley.newRequestQueue(this);
@@ -174,7 +178,7 @@ public class Drawerlayout extends AppCompatActivity {
     }
 
     private void jsonParse() {
-        StringRequest request =  new StringRequest(Request.Method.POST, "http://try11.in/admin/app_link/match_list.php", new Response.Listener<String>() {
+        StringRequest request =  new StringRequest(Request.Method.POST, "http://crazymall.co.in/admin/not_usable/product_list.php", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
@@ -185,7 +189,7 @@ public class Drawerlayout extends AppCompatActivity {
                     {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-                        String ll=jsonObject.getString("Team-A");
+                        String ll=jsonObject.getString("product_name");
                         list.add(ll);
                     }
 
@@ -206,7 +210,7 @@ public class Drawerlayout extends AppCompatActivity {
     }
 
     private void parseTopSeller() {
-        StringRequest request = new StringRequest(Request.Method.POST, "http://www.json-generator.com/api/json/get/cpVYYBdrVK?indent=2", new Response.Listener<String>() {
+        StringRequest request = new StringRequest(Request.Method.POST, "http://sakardeal.com/android/product_list.php", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
@@ -218,8 +222,9 @@ public class Drawerlayout extends AppCompatActivity {
 
                         final TopSeller topSeller = new TopSeller();    //topSeller-obj
 
-                        topSeller.setItemname(jsonObject.getString("item"));
-                        //topSeller.setPics(jsonObject.getString("img"));
+                        topSeller.setItemname(jsonObject.getString("product_name"));
+                        topSeller.setPics(jsonObject.getString("feature_url"));
+                        topSeller.setId(jsonObject.getString("add_product_id"));
 
                         topSellerList.add(topSeller);
                     }

@@ -1,6 +1,8 @@
 package com.example.kenthomeopathicpharmacy;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -86,14 +88,25 @@ public class Login extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 Toast.makeText(Login.this, ""+response, Toast.LENGTH_SHORT).show();
-                //System.out.println(response);
-                Log.i("My success",""+response);
+               // System.out.println(response);
 
-                if(response.equalsIgnoreCase("true"))
+
+
+                String str = response.toString();
+                System.out.println(""+ str);
+
+                SharedPreferences sharedpreferences = getSharedPreferences("username",MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedpreferences.edit();
+                editor.putString("u_id",str);
+                editor.commit();    //commit()-Commit your preferences changes back from this Editor to the SharedPreferences object it is editing. This atomically performs the requested modifications, replacing whatever is currently in the SharedPreferences.
+
+                if(response.equals(str))
                 {
                     Intent intent = new Intent(getApplicationContext(),Drawerlayout.class);
+                    intent.putExtra("id",str);
                     startActivity(intent);
                 }
+
             }
         }, new Response.ErrorListener() {
             @Override

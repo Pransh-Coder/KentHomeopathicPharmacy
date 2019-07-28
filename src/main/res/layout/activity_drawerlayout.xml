@@ -87,6 +87,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
+                    android:id="@+id/view_all"
                     android:layout_marginTop="6dp"
                     android:text="View All"
                     android:layout_width="100dp"
