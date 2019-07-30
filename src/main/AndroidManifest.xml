@@ -11,11 +11,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".EnterDetailsofAddress"></activity>
+        <activity android:name=".ShowProducts"></activity>
+        <activity android:name=".EnterDetailsofAddress" />
         <activity android:name=".ShowAdress" />
         <activity android:name=".ShowData" />
-        <activity android:name=".items_cart"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
+        <activity
+            android:name=".items_cart"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
         <activity android:name=".Drawerlayout" />
         <activity android:name=".Login" />
         <activity android:name=".MainActivity">

@@ -46,7 +46,7 @@ public class ShowData extends AppCompatActivity {
         textView1=findViewById(R.id.discriptiontext);
         textView2=findViewById(R.id.price);
 
-            final Intent intent = getIntent();           // Receiving data from RecyclerAdapterTopseller (id) in blank activity
+            final Intent intent = getIntent();           // Receiving data from RecyclerAdapterTopseller (id) in ShowData activity
             final String ids = intent.getStringExtra("id");
 
             showData(ids);                                      //we are showing data with help of ids of products
@@ -55,6 +55,7 @@ public class ShowData extends AppCompatActivity {
             addtoCart.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    //getting the id from RecyclerAdapterTopSeller in ShowData Activity
                     Intent  intent1 = new Intent(getApplicationContext(),items_cart.class);
                     intent1.putExtra("id",ids);                                     // from here also we have to pass data we cannot directly pass from recycleradapterTopseller
                     startActivity(intent1);
@@ -63,7 +64,7 @@ public class ShowData extends AppCompatActivity {
 
         }
         private void showData(final String i){
-            StringRequest request = new StringRequest(Request.Method.POST, "http://crazymall.co.in/admin/not_usable/paticular_product_detail.php", new Response.Listener<String>() {
+            StringRequest request = new StringRequest(Request.Method.POST, "https://crazymall.co.in/admin/not_usable/paticular_product_detail.php", new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
 

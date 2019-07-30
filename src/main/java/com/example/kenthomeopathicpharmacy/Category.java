@@ -1,16 +1,16 @@
 package com.example.kenthomeopathicpharmacy;
 
 public class Category {
-    //private String images;
+    private String images;
     private String categorynames;
 
-   /* public String getImages() {
+    public String getImages() {
         return images;
     }
 
     public void setImages(String images) {
         this.images = images;
-    }*/
+    }
 
     public String getCategorynames() {
         return categorynames;

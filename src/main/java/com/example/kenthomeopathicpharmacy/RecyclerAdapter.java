@@ -8,12 +8,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
+//This Adapter is for category
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
 
     Context context;
@@ -35,7 +38,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         holder.name.setText(categoryList.get(position).getCategorynames());
-        //Picasso.get().load(categoryList.get(position).getCategorynames()).into(holder.imageView);
+        Picasso.get().load(categoryList.get(position).getCategorynames()).into(holder.imageView);
     }
 
     @Override

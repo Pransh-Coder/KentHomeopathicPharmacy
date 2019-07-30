@@ -27,16 +27,27 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <android.support.constraint.ConstraintLayout
+                    android:id="@+id/con"
                     android:padding="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
                     <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recycler"
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
                     </android.support.v7.widget.RecyclerView>
 
+                 <!--   <Button
+                        android:id="@+id/removeitem"
+                        android:layout_marginTop="2dp"
+                        android:textStyle="bold"
+                        android:text="Remove Item "
+                        android:background="@null"
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp"
+                        app:layout_constraintBottom_toBottomOf="@id/recycler"/>    -->
                 </android.support.constraint.ConstraintLayout>
             </android.support.v7.widget.CardView>
 
@@ -58,19 +69,12 @@
                         app:layout_constraintTop_toTopOf="parent"/>
 
                     <TextView
-                        android:id="@+id/setname"
-                        android:layout_marginTop="5dp"
-                        android:padding="2dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintTop_toBottomOf="@+id/line"/>
-
-                    <TextView
+                        android:layout_marginTop="10dp"
                         android:id="@+id/filladdress"
                         android:padding="2dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:layout_constraintTop_toBottomOf="@+id/setname"/>
+                        app:layout_constraintTop_toBottomOf="@+id/line"/>
 
                     <Button
                         android:id="@+id/chgAdress"

@@ -1,5 +1,6 @@
 package com.example.kenthomeopathicpharmacy;
 
+import android.content.Intent;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -9,6 +10,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -112,6 +114,14 @@ public class Drawerlayout extends AppCompatActivity {
         jsonParse();
         parseCategory();
         parseTopSeller();
+
+        view_all_items.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Drawerlayout.this,ShowProducts.class);
+                startActivity(intent);
+            }
+        });
     }
 
     public  class Autoslide extends TimerTask{              //TimerTask()-A task that can be scheduled for one-time or repeated execution by a Timer.
@@ -140,7 +150,7 @@ public class Drawerlayout extends AppCompatActivity {
 
     private void parseCategory() {
         //StringReques- A canned request for retrieving the response body at a given URL as a String.
-        StringRequest request =  new StringRequest(Request.Method.POST, "http://www.json-generator.com/api/json/get/bVvBnCUBgy?indent=2", new Response.Listener<String>() {
+        StringRequest request =  new StringRequest(Request.Method.POST, "https://crazymall.co.in/admin/not_usable/top_cat.php", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
@@ -153,8 +163,8 @@ public class Drawerlayout extends AppCompatActivity {
 
                         final Category  category =new Category();
 
-                        category.setCategorynames(jsonObject.getString("cat"));
-                        //category.setImages(jsonObject.getString("logo"));
+                        category.setCategorynames(jsonObject.getString("top_cat_name"));
+                        category.setImages(jsonObject.getString("url"));
 
                         categoryList.add(category);     //The data that we retrived  in obj category we pass it to arraylist
 
@@ -178,7 +188,7 @@ public class Drawerlayout extends AppCompatActivity {
     }
 
     private void jsonParse() {
-        StringRequest request =  new StringRequest(Request.Method.POST, "http://crazymall.co.in/admin/not_usable/product_list.php", new Response.Listener<String>() {
+        StringRequest request =  new StringRequest(Request.Method.POST, "http://sakardeal.com/android/product_list.php", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
