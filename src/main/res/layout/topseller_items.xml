@@ -36,11 +36,11 @@
                 android:gravity="center"
                 android:layout_width="0sp"
                 android:layout_height="0sp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
                 android:text="R17"
                 android:textColor="@android:color/black"
-                android:textSize="15sp"
+                android:textSize="10sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/imageView"
                 app:layout_constraintBottom_toBottomOf="parent"/>
 

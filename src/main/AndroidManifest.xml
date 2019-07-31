@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ShowProducts"></activity>
+        <activity android:name=".PaymentDetails"></activity>
+        <activity android:name=".ShowProducts" />
         <activity android:name=".EnterDetailsofAddress" />
         <activity android:name=".ShowAdress" />
         <activity android:name=".ShowData" />

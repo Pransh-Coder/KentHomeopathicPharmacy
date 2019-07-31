@@ -49,14 +49,13 @@ public class items_cart extends AppCompatActivity {
     TextView name,price,filladdressdetails;
     ImageView imageView;
 
-    RequestQueue queue;    // for storing in cart i.e storetocart() func
-    RequestQueue queue1;
+   /* RequestQueue queue;    // for storing in cart i.e ShowCartItems() func
+    RequestQueue queue1;*/
     RequestQueue queue2;  // for filling items in cart i.e filltocart()
 
     Button button;
-    Button removeItem;
-
     Button  rupees;
+    Button continue_btn;
 
     TextView textView;
 
@@ -66,9 +65,10 @@ public class items_cart extends AppCompatActivity {
         setContentView(R.layout.activity_items_cart);
 
         textView=findViewById(R.id.cost);
+        continue_btn = findViewById(R.id.continu);
 
-        queue= Volley.newRequestQueue(this);
-        queue1=Volley.newRequestQueue(this);
+        /*queue= Volley.newRequestQueue(this);
+        queue1=Volley.newRequestQueue(this);*/
 
         queue2=Volley.newRequestQueue(this);
 
@@ -76,9 +76,6 @@ public class items_cart extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
         recyclerView.setLayoutManager(layoutManager);
 
-        /*name = findViewById(R.id.itemname);
-        price=findViewById(R.id.itemprice);
-        imageView = findViewById(R.id.itemimg);*/
 
         SharedPreferences sharedPreferences =getApplication().getSharedPreferences("username",MODE_PRIVATE);
         String a= sharedPreferences.getString("u_id","");
@@ -92,16 +89,6 @@ public class items_cart extends AppCompatActivity {
         //storetocart();
         ShowCartItems(a);
 
-        /*removeItem = findViewById(R.id.removeitem);
-        removeItem.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                //Toast.makeText(getApplicationContext(),"button clicked",Toast.LENGTH_SHORT).show();
-                removeproducts(id);
-
-            }
-        });*/
 
         rupees = findViewById(R.id.Rs);
 
@@ -131,8 +118,15 @@ public class items_cart extends AppCompatActivity {
                 startActivity(intent1);
             }
         });
+        continue_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(items_cart.this,PaymentDetails.class);
+                startActivity(intent1);
+            }
+        });
     }
-    //final String id,   filltocart- this func is for filling cart and storing into cart
+    // filltocart- this func is for filling cart
     private void filltocart(final  String id,final String name) {
         StringRequest request = new StringRequest(Request.Method.POST, "http://sakardeal.com/android/add_to_cart.php", new Response.Listener<String>() {
             @Override
@@ -141,40 +135,6 @@ public class items_cart extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),""+response,Toast.LENGTH_SHORT).show();
                 System.out.println(response);
 
-                try {
-                    JSONArray jsonArray = new JSONArray(response);
-
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject jsonObject = jsonArray.getJSONObject(i);
-
-                        final CartItems cartItems = new CartItems();           //  cartItems - obj of class CartItems
-                        cartItems.setP_id(jsonObject.getString("add_to_cart_id"));
-                        cartItems.setP_name(jsonObject.getString("product_name"));
-                        cartItems.setP_price(jsonObject.getString("product_price"));
-                        cartItems.setImg(jsonObject.getString("feature_url"));
-
-                        cartItemsList.add(cartItems);     //adding obj to list of cartitemsList to fill the data in adapter
-
-                        //for adding (sum) values in rupees textview
-                        String summ = jsonObject.getString("product_price");
-
-                            sum.add(Integer.valueOf(summ));
-                            int sumddata = 0;    //counter
-                            for (int ii : sum)
-                                sumddata += ii;
-                            String a = String.valueOf(sumddata);
-                            int b=sum.size();
-                            String c =String.valueOf(b);
-                           // Toast.makeText(getApplicationContext(),""+c,Toast.LENGTH_SHORT).show();
-
-                            rupees.setText("Rs." + a);
-
-                            textView.setText("No of Products  "+ "("+c+ ")");
-
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
                 adapter = new RecyclerAdapterCartItems(items_cart.this,cartItemsList);          //constructor of RecyclerAdapterCartItems
                 recyclerView.setAdapter(adapter);
             }
@@ -224,13 +184,19 @@ public class items_cart extends AppCompatActivity {
                         for (int ii : sum)
                             sumddata += ii;
                         String a = String.valueOf(sumddata);
-                        int b=sum.size();
+                        int b=sum.size();                      // for getting list of arraylist
                         String c =String.valueOf(b);
                         // Toast.makeText(getApplicationContext(),""+c,Toast.LENGTH_SHORT).show();
 
                         rupees.setText("Rs." + a);
 
-                        textView.setText("No of Products  "+ "("+c+ ")");
+                        textView.setText("Price  "+ "("+c+" items"+ ")");
+
+                        SharedPreferences sharedPreferences = getSharedPreferences("values",MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("size",c);
+                        editor.putString("totalPrice",a);
+                        editor.commit();
 
                     }
                 } catch (JSONException e) {
@@ -248,7 +214,6 @@ public class items_cart extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 HashMap<String,String> map = new HashMap<>();
-                // map.put("product_id",id);
                 map.put("user_id",name);
                 return map;
             }
