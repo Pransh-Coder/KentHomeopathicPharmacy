@@ -12,31 +12,22 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
+import com.example.kenthomeopathicpharmacy.ProdByCategory;
+import com.example.kenthomeopathicpharmacy.R;
+import com.example.kenthomeopathicpharmacy.RecyclerAdapterTopSeller;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
+public class RecyclerAdapterProductByCategory extends RecyclerView.Adapter<RecyclerAdapterProductByCategory.ViewHolder> {
 
-public class RecyclerAdapterTopSeller extends RecyclerView.Adapter<RecyclerAdapterTopSeller.ViewHolder>{
+    Context context;
+    List<ProdByCategory> prodByCategoryList = new ArrayList<>();
 
-    RequestQueue queue;
-
-    private Context context;
-    List<TopSeller> topSellerList = new ArrayList<>();
-
-    public RecyclerAdapterTopSeller(Context context, List<TopSeller> topSellerList) {       //constructor
+    public RecyclerAdapterProductByCategory(Context context, List<ProdByCategory> prodByCategoryList) {
         this.context = context;
-        this.topSellerList = topSellerList;
+        this.prodByCategoryList = prodByCategoryList;
     }
 
     @NonNull
@@ -48,29 +39,28 @@ public class RecyclerAdapterTopSeller extends RecyclerView.Adapter<RecyclerAdapt
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-        holder.itemname.setText(topSellerList.get(position).getItemname());
-        Picasso.get().load(topSellerList.get(position).getPics()).into(holder.imageView);
+        holder.itemname.setText(prodByCategoryList.get(position).getName());
+        Picasso.get().load(prodByCategoryList.get(position).getImgs()).into(holder.imageView);
 
         holder.constraintLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                String id = topSellerList.get(position).getId();
-
+                String id =prodByCategoryList.get(position).getProd_id();
+                Toast.makeText(context,id,Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(context.getApplicationContext(),ShowData.class);
-                intent.putExtra("id",id);                   //sending data from RecyclerAdapterTopSeller  to showData activity  (intent.putExtra(String key, Object data))
-                context.startActivity(intent);                  //we can directly use startActivity(intent)
+                intent.putExtra("id",id);
+                context.startActivity(intent);
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return topSellerList.size();
+        return prodByCategoryList.size();
     }
 
-
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         TextView itemname;
         ImageView imageView;
         ConstraintLayout constraintLayout;
@@ -81,5 +71,5 @@ public class RecyclerAdapterTopSeller extends RecyclerView.Adapter<RecyclerAdapt
             constraintLayout = itemView.findViewById(R.id.constraintView2);
         }
     }
-
 }
+

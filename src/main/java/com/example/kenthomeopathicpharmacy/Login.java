@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -40,6 +41,12 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        ActionBar actionBar = getSupportActionBar();
+        if(actionBar!=null)
+        {
+            actionBar.setBackgroundDrawable(getResources().getDrawable(R.drawable.custom_actionbar));
+        }
 
         useremail=(EditText)findViewById(R.id.writeemail);
         password=(EditText)findViewById(R.id.writepassword);
@@ -100,8 +107,11 @@ public class Login extends AppCompatActivity {
                 editor.putString("u_id",str);
                 editor.commit();    //commit()-Commit your preferences changes back from this Editor to the SharedPreferences object it is editing. This atomically performs the requested modifications, replacing whatever is currently in the SharedPreferences.
 
-                if(response.equals(str))
+                if(response.equalsIgnoreCase("invalide"))
                 {
+                    Toast.makeText(Login.this, "Either email or password is incorrect!!", Toast.LENGTH_SHORT).show();
+                }
+                else{
                     Intent intent = new Intent(getApplicationContext(),Drawerlayout.class);
                     intent.putExtra("id",str);
                     startActivity(intent);

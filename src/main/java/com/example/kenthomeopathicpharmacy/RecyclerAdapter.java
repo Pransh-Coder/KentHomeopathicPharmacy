@@ -1,12 +1,15 @@
 package com.example.kenthomeopathicpharmacy;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -35,10 +38,24 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
 
         holder.name.setText(categoryList.get(position).getCategorynames());
-        Picasso.get().load(categoryList.get(position).getCategorynames()).into(holder.imageView);
+        Picasso.get().load(categoryList.get(position).getImages()).into(holder.imageView);
+
+        holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String id =categoryList.get(position).getId();
+                Toast.makeText(context,id,Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(context.getApplicationContext(),ProductByCategory.class);
+                intent.putExtra("id",id);                       //sending data from RecyclerAdapter Activity  to ProductByCategory Activity
+                context.startActivity(intent);
+            }
+        });
+
     }
 
     @Override
@@ -50,11 +67,13 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView name;
         CircleImageView imageView;
+        RelativeLayout relativeLayout;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             name = itemView.findViewById(R.id.category);
             imageView = itemView.findViewById(R.id.image_view);
+            relativeLayout = itemView.findViewById(R.id.relativeLayout);
         }
     }
 }

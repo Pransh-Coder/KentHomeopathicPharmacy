@@ -3,10 +3,13 @@ package com.example.kenthomeopathicpharmacy;
 import android.app.backup.SharedPreferencesBackupHelper;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -57,13 +60,23 @@ public class items_cart extends AppCompatActivity {
     Button  rupees;
     Button continue_btn;
 
-    TextView textView;
+    TextView textView,showname;
+    TextView totalPrice,totalPayable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_items_cart);
 
+        ActionBar actionBar = getSupportActionBar();
+        if(actionBar!=null)
+        {
+            actionBar.setBackgroundDrawable(getResources().getDrawable(R.drawable.custom_actionbar));
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+
+        totalPrice = findViewById(R.id.t_amount);
+        totalPayable=findViewById(R.id.t_payable);
         textView=findViewById(R.id.cost);
         continue_btn = findViewById(R.id.continu);
 
@@ -93,6 +106,7 @@ public class items_cart extends AppCompatActivity {
         rupees = findViewById(R.id.Rs);
 
         filladdressdetails = findViewById(R.id.filladdress);
+        showname = findViewById(R.id.showname);
 
         //Getting address from EnterDetailsofAdress activity using sharedPrefrence
         SharedPreferences sharedPreferences1 = getApplication().getSharedPreferences("user_details",MODE_PRIVATE);
@@ -107,8 +121,8 @@ public class items_cart extends AppCompatActivity {
         String address = sharedPreferences1.getString("p_address","");
         String state = sharedPreferences1.getString("p_state","");
 
-
-        filladdressdetails.setText(nameofperson +"\n"+city + "\n" + address + " ," + state+"\n" + p +"\n"+ no);
+        showname.setText(""+nameofperson);
+        filladdressdetails.setText(city + "\n" + address + " ," + state+"\n" + p +"\n"+ no);
 
         button=findViewById(R.id.chgAdress);
         button.setOnClickListener(new View.OnClickListener() {
@@ -125,6 +139,7 @@ public class items_cart extends AppCompatActivity {
                 startActivity(intent1);
             }
         });
+
     }
     // filltocart- this func is for filling cart
     private void filltocart(final  String id,final String name) {
@@ -155,7 +170,7 @@ public class items_cart extends AppCompatActivity {
         queue2.add(request);
     }
     private void ShowCartItems(final String name){
-        StringRequest request = new StringRequest(Request.Method.POST, "http://sakardeal.com/android/cart_detail.php ", new Response.Listener<String>() {
+        StringRequest request = new StringRequest(Request.Method.POST, "http://sakardeal.com/android/cart_detail.php", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
@@ -169,6 +184,7 @@ public class items_cart extends AppCompatActivity {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
 
                         final CartItems cartItems = new CartItems();           //  cartItems - obj of class CartItems
+
                         cartItems.setP_id(jsonObject.getString("add_to_cart_id"));
                         cartItems.setP_name(jsonObject.getString("product_name"));
                         cartItems.setP_price(jsonObject.getString("product_price"));
@@ -189,8 +205,9 @@ public class items_cart extends AppCompatActivity {
                         // Toast.makeText(getApplicationContext(),""+c,Toast.LENGTH_SHORT).show();
 
                         rupees.setText("Rs." + a);
-
+                        totalPrice.setText("Total Amount: Rs. "+a);
                         textView.setText("Price  "+ "("+c+" items"+ ")");
+                        totalPayable.setText("Total Payable: "+a );
 
                         SharedPreferences sharedPreferences = getSharedPreferences("values",MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -219,5 +236,20 @@ public class items_cart extends AppCompatActivity {
             }
         };
         queue2.add(request);
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                /*Intent intent = new Intent(this,ShowData.class);
+                startActivity(intent);*/
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return true;
     }
 }

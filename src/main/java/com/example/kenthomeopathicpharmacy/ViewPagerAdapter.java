@@ -12,7 +12,7 @@ import android.widget.ImageView;
 public class ViewPagerAdapter extends PagerAdapter {
     private Context context;
     LayoutInflater layoutInflater;
-    private int img[]={R.drawable.homeopathy,R.drawable.dilutions,R.drawable.diskets};
+    private int img[]={R.drawable.s10,R.drawable.v15,R.drawable.f11};
 
     public ViewPagerAdapter(Context context) {
         this.context = context;

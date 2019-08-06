@@ -101,7 +101,7 @@
     <Button
         android:id="@+id/addtocart"
         android:layout_width="180dp"
-        android:text="Add to Cart "
+        android:text="@string/AddToCart"
         android:textColor="@android:color/white"
         android:background="@android:color/holo_blue_light"
         android:layout_height="wrap_content"

@@ -1,6 +1,8 @@
 package com.example.kenthomeopathicpharmacy;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -14,6 +16,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -31,7 +34,7 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Drawerlayout extends AppCompatActivity {
+public class Drawerlayout extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     Button view_all_items;
 
@@ -68,6 +71,14 @@ public class Drawerlayout extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drawerlayout);
 
+        NavigationView navigationView=findViewById(R.id.navigationId);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        ActionBar actionBar = getSupportActionBar();
+        if(actionBar!=null)
+        {
+            actionBar.setBackgroundDrawable(getResources().getDrawable(R.drawable.custom_actionbar));
+        }
         view_all_items= findViewById(R.id.view_all);
 
         recyclerView =(RecyclerView)findViewById(R.id.recyclerView);            //for category lists
@@ -122,8 +133,9 @@ public class Drawerlayout extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-    }
 
+
+    }
     public  class Autoslide extends TimerTask{              //TimerTask()-A task that can be scheduled for one-time or repeated execution by a Timer.
         @Override
         public void run() {
@@ -150,7 +162,7 @@ public class Drawerlayout extends AppCompatActivity {
 
     private void parseCategory() {
         //StringReques- A canned request for retrieving the response body at a given URL as a String.
-        StringRequest request =  new StringRequest(Request.Method.POST, "https://crazymall.co.in/admin/not_usable/top_cat.php", new Response.Listener<String>() {
+        StringRequest request =  new StringRequest(Request.Method.POST, "http://sakardeal.com/android/top_cat.php", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
@@ -163,6 +175,7 @@ public class Drawerlayout extends AppCompatActivity {
 
                         final Category  category =new Category();
 
+                        category.setId(jsonObject.getString("top_cat_id"));
                         category.setCategorynames(jsonObject.getString("top_cat_name"));
                         category.setImages(jsonObject.getString("url"));
 
@@ -188,7 +201,7 @@ public class Drawerlayout extends AppCompatActivity {
     }
 
     private void jsonParse() {
-        StringRequest request =  new StringRequest(Request.Method.POST, "http://sakardeal.com/android/product_list.php", new Response.Listener<String>() {
+        StringRequest request =  new StringRequest(Request.Method.POST, "https://crazymall.co.in/admin/not_usable/product_list.php", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
@@ -220,7 +233,7 @@ public class Drawerlayout extends AppCompatActivity {
     }
 
     private void parseTopSeller() {
-        StringRequest request = new StringRequest(Request.Method.POST, "http://sakardeal.com/android/product_list.php", new Response.Listener<String>() {
+        StringRequest request = new StringRequest(Request.Method.POST, "https://crazymall.co.in/admin/not_usable/product_list.php", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
@@ -262,4 +275,20 @@ public class Drawerlayout extends AppCompatActivity {
             return true;
         return super.onOptionsItemSelected(item);
     }
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        if(menuItem.getItemId()==R.id.mycart)
+        {
+           Intent intent = new Intent(this,items_cart.class);
+           startActivity(intent);
+        }
+        else if (menuItem.getItemId()==R.id.account)
+        {
+
+            Intent intent = new Intent(this,MyAccount.class);
+            startActivity(intent);
+        }
+        return false;
+    }
+
 }

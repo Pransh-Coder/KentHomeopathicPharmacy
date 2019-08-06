@@ -174,7 +174,7 @@
         app:layout_constraintBottom_toBottomOf="parent"/>
 
     <Button
-        android:id="@+id/continu"
+        android:id="@+id/conti"
         android:text="Continue"
         android:textColor="@android:color/white"
         android:background="@drawable/button"
