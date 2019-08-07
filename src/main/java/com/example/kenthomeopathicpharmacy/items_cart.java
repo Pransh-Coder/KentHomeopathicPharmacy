@@ -49,12 +49,10 @@ public class items_cart extends AppCompatActivity {
     ArrayList<Integer> sum = new ArrayList();
     ArrayList<Integer> products = new ArrayList<>();
 
-    TextView name,price,filladdressdetails;
-    ImageView imageView;
+    TextView filladdressdetails;
 
-   /* RequestQueue queue;    // for storing in cart i.e ShowCartItems() func
-    RequestQueue queue1;*/
-    RequestQueue queue2;  // for filling items in cart i.e filltocart()
+
+    RequestQueue queue2;  // for filling items in cart i.e filltocart()  & for storing in cart i.e ShowCartItems() func
 
     Button button;
     Button  rupees;
@@ -80,8 +78,6 @@ public class items_cart extends AppCompatActivity {
         textView=findViewById(R.id.cost);
         continue_btn = findViewById(R.id.continu);
 
-        /*queue= Volley.newRequestQueue(this);
-        queue1=Volley.newRequestQueue(this);*/
 
         queue2=Volley.newRequestQueue(this);
 

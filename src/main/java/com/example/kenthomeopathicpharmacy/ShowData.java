@@ -61,10 +61,17 @@ public class ShowData extends AppCompatActivity {
 
         showData(ids);                                      //we are showing data with help of ids of products
 
-        Button addtoCart = findViewById(R.id.addtocart);
+        final Button addtoCart = findViewById(R.id.addtocart);
         addtoCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                addtoCart.setText("Go To Cart");
+                String val = addtoCart.getText().toString();
+
+                if(val.equalsIgnoreCase("Go To Cart"))
+                {
+                    Toast.makeText(getApplicationContext(),"Product added",Toast.LENGTH_SHORT).show();
+                }
                 //getting the id from RecyclerAdapterTopSeller in ShowData Activity
                 Intent  intent1 = new Intent(getApplicationContext(),items_cart.class);
                 intent1.putExtra("id",ids);                                     // from here also we have to pass data we cannot directly pass from recycleradapterTopseller

@@ -44,6 +44,17 @@
                 app:layout_constraintTop_toBottomOf="@id/imageView"
                 app:layout_constraintBottom_toBottomOf="parent"/>
 
+            <TextView
+                android:id="@+id/med_price"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textSize="9sp"
+                android:textColor="@android:color/holo_red_light"
+                app:layout_constraintTop_toBottomOf="@+id/imageView"
+                app:layout_constraintBottom_toTopOf="@+id/medicine"/>
+
         </android.support.constraint.ConstraintLayout>
     </android.support.v7.widget.CardView>
 </android.support.constraint.ConstraintLayout>

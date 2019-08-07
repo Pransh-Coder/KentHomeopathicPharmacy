@@ -245,6 +245,7 @@ public class Drawerlayout extends AppCompatActivity implements NavigationView.On
 
                         final TopSeller topSeller = new TopSeller();    //topSeller-obj
 
+                        topSeller.setPrice(jsonObject.getString("product_price"));
                         topSeller.setItemname(jsonObject.getString("product_name"));
                         topSeller.setPics(jsonObject.getString("feature_url"));
                         topSeller.setId(jsonObject.getString("add_product_id"));

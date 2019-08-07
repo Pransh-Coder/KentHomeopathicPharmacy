@@ -2,23 +2,23 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:padding="10dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="10dp"
     tools:context=".Login">
 
     <TextView
         android:id="@+id/login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Login"
-        android:typeface="serif"
-        android:paddingLeft="10dp"
         android:layout_marginTop="35sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:paddingLeft="10dp"
+        android:text="Login"
         android:textColor="#000"
-        android:textSize="30sp"/>
+        android:textSize="30sp"
+        android:typeface="serif"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/email"
@@ -26,35 +26,35 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
         android:paddingLeft="10sp"
-        android:textSize="15sp"
         android:text="Email"
         android:textColor="#A9A9A9"
-        app:layout_constraintTop_toBottomOf="@+id/login"/>
+        android:textSize="15sp"
+        app:layout_constraintTop_toBottomOf="@+id/login" />
 
     <EditText
         android:id="@+id/writeemail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/email"/>
+        app:layout_constraintTop_toBottomOf="@+id/email" />
 
     <TextView
         android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="25sp"
-        android:text="Password"
         android:paddingLeft="10dp"
+        android:text="Password"
         android:textColor="#A9A9A9"
-        app:layout_constraintTop_toBottomOf="@+id/writeemail"/>
+        app:layout_constraintTop_toBottomOf="@+id/writeemail" />
 
     <EditText
         android:id="@+id/writepassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="0dp"
         android:ems="10"
         android:inputType="textPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/password"/>
+        app:layout_constraintTop_toBottomOf="@+id/password" />
 
     <Button
         android:id="@+id/button1"
@@ -73,16 +73,16 @@
         android:gravity="center"
         android:text="Don't have an account?"
         android:textColor="#A9A9A9"
-        app:layout_constraintTop_toBottomOf="@+id/button1"/>
+        app:layout_constraintTop_toBottomOf="@+id/button1" />
 
     <Button
         android:id="@+id/register"
         android:layout_width="65dp"
         android:layout_height="40dp"
-        android:background="@null"
-        android:text="Register"
         android:layout_marginTop="14dp"
         android:layout_marginRight="28dp"
+        android:background="@null"
+        android:text="Register"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button1" />
 

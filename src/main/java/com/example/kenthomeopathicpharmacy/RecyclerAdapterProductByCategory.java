@@ -40,6 +40,7 @@ public class RecyclerAdapterProductByCategory extends RecyclerView.Adapter<Recyc
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         holder.itemname.setText(prodByCategoryList.get(position).getName());
+        holder.itemprice.setText("Rs. " +prodByCategoryList.get(position).getPrice());
         Picasso.get().load(prodByCategoryList.get(position).getImgs()).into(holder.imageView);
 
         holder.constraintLayout.setOnClickListener(new View.OnClickListener() {
@@ -61,12 +62,13 @@ public class RecyclerAdapterProductByCategory extends RecyclerView.Adapter<Recyc
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView itemname;
+        TextView itemname,itemprice;
         ImageView imageView;
         ConstraintLayout constraintLayout;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             itemname = itemView.findViewById(R.id.medicine);
+            itemprice = itemView.findViewById(R.id.med_price);
             imageView = itemView.findViewById(R.id.imageView);
             constraintLayout = itemView.findViewById(R.id.constraintView2);
         }

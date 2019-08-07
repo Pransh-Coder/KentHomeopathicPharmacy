@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
         StringRequest request = new StringRequest(Request.Method.POST, "http://sakardeal.com/android/inset.php", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Toast.makeText(MainActivity.this, "data Saved "+response, Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, response, Toast.LENGTH_SHORT).show();
                 Log.i("My success",""+response);
 
             }
