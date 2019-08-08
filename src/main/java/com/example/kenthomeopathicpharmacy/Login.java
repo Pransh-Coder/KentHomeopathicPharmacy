@@ -97,14 +97,12 @@ public class Login extends AppCompatActivity {
                 Toast.makeText(Login.this, ""+response, Toast.LENGTH_SHORT).show();
                // System.out.println(response);
 
-
-
                 String str = response.toString();
                 System.out.println(""+ str);
 
                 SharedPreferences sharedpreferences = getSharedPreferences("username",MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedpreferences.edit();
-                editor.putString("u_id",str);
+                editor.putString("u_id",str);    // we are sending this u_id in items_cart activity
                 editor.commit();    //commit()-Commit your preferences changes back from this Editor to the SharedPreferences object it is editing. This atomically performs the requested modifications, replacing whatever is currently in the SharedPreferences.
 
                 if(response.equalsIgnoreCase("invalide"))

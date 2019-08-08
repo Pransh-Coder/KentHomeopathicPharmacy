@@ -87,7 +87,7 @@ public class items_cart extends AppCompatActivity {
 
 
         SharedPreferences sharedPreferences =getApplication().getSharedPreferences("username",MODE_PRIVATE);
-        String a= sharedPreferences.getString("u_id","");
+        final String a= sharedPreferences.getString("u_id","");   // we are receving this u_id from Login Activity this u_id is response
         System.out.println(a);   //id=39
 
         final Intent intent = getIntent();           // Receiving data from RecyclerAdapterTopseller (id) in items_cart activity
@@ -131,8 +131,14 @@ public class items_cart extends AppCompatActivity {
         continue_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent(items_cart.this,PaymentDetails.class);
-                startActivity(intent1);
+                if(a.isEmpty())
+                {
+                    Toast.makeText(getApplicationContext(),"Please Login again!",Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Intent intent1 = new Intent(items_cart.this,PaymentDetails.class);
+                    startActivity(intent1);
+                }
             }
         });
 

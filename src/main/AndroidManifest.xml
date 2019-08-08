@@ -11,10 +11,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MyAccount"></activity>
+        <activity android:name=".AboutUs"></activity>
+        <activity android:name=".MyAccount" />
         <activity android:name=".ProductByCategory" />
-        <activity android:name=".PopActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />/>
+        <activity
+            android:name=".PopActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
         <activity android:name=".OrderList" />
         <activity android:name=".ConfirmOrder" />
         <activity android:name=".PaymentDetails" />
@@ -22,8 +24,7 @@
         <activity android:name=".EnterDetailsofAddress" />
         <activity android:name=".ShowAdress" />
         <activity android:name=".ShowData" />
-        <activity
-            android:name=".items_cart" />
+        <activity android:name=".items_cart" />
         <activity android:name=".Drawerlayout" />
         <activity android:name=".Login" />
         <activity android:name=".MainActivity">

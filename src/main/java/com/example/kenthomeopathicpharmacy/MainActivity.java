@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void jsonParse() {
-        StringRequest request = new StringRequest(Request.Method.POST, "http://sakardeal.com/android/inset.php", new Response.Listener<String>() {
+        StringRequest request = new StringRequest(Request.Method.POST, "http://sakardeal.com/android/reg.php", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Toast.makeText(MainActivity.this, response, Toast.LENGTH_SHORT).show();
@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
                 Map<String,String> map = new HashMap<String, String>();
                 map.put("name",username);
                 map.put("email",useremail);
-                map.put("pass",userpassword);
+                map.put("password",userpassword);
                 return map;
             }
         };

@@ -289,6 +289,12 @@ public class Drawerlayout extends AppCompatActivity implements NavigationView.On
             Intent intent = new Intent(this,MyAccount.class);
             startActivity(intent);
         }
+        else if (menuItem.getItemId()==R.id.about)
+        {
+
+            Intent intent = new Intent(this,AboutUs.class);
+            startActivity(intent);
+        }
         return false;
     }
 
