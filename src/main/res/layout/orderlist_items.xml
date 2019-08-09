@@ -18,14 +18,14 @@
                 android:id="@+id/image"
                 android:layout_width="110dp"
                 android:layout_height="130dp"
-                android:scaleType="center"
                 android:src="@color/colorPrimary"/>
 
             <TextView
                 android:id="@+id/prod_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="dbhfhbfhghcfgvgcfgccjjcgcfcf
+                android:text="dbhfhbfhghcfgvgcfgccjj
+                cgcfcf
                 gc"
                 android:typeface="sans"
                 android:layout_toRightOf="@id/image"

@@ -14,17 +14,17 @@
         android:text="Signup"
         android:typeface="serif"
         android:paddingLeft="10dp"
-        android:layout_marginTop="35sp"
+        android:layout_marginTop="25sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:textColor="#000"
-        android:textSize="30sp"/>
+        android:textSize="25sp"/>
 
     <TextView
         android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="40dp"
         android:paddingLeft="5sp"
         android:textSize="15sp"
         android:text="Name:"
@@ -86,13 +86,16 @@
         tools:layout_editor_absoluteX="0dp" />
 
     <TextView
-        android:layout_width="match_parent"
+        android:id="@+id/haveAcc"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:gravity="center"
         android:text="Already have an account?"
         android:textColor="#A9A9A9"
         app:layout_constraintTop_toBottomOf="@+id/button"
+        app:layout_constraintLeft_toRightOf="@+id/signin"
+        app:layout_constraintRight_toLeftOf="@+id/signin"
         tools:layout_editor_absoluteX="10dp" />
 
     <Button
@@ -101,9 +104,22 @@
         android:layout_height="50dp"
         android:background="@null"
         android:text="Sign in"
-        android:layout_marginTop="9dp"
-        android:layout_marginRight="38dp"
+        android:layout_marginLeft="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/haveAcc"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintLeft_toRightOf="@id/haveAcc"
+        app:layout_constraintTop_toTopOf="@+id/haveAcc" />
+
+    <Button
+        android:id="@+id/skip"
+        android:layout_width="190dp"
+        android:layout_height="50dp"
+        android:background="@null"
+        android:text="Skip Signup page for now!"
+        android:textAllCaps="false"
+        android:textSize="12sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </android.support.constraint.ConstraintLayout>

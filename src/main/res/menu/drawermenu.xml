@@ -9,16 +9,17 @@
         android:icon="@drawable/about"
         android:title="About Us"/>
 
-    <item android:id="@+id/faq"
-        android:icon="@drawable/faq"
-        android:title="FAQ"/>
-
-    <item android:id="@+id/followus"
-        android:icon="@drawable/ic_group_add_black_24dp"
-        android:title="Follow us on Instagram"/>
 
     <item android:id="@+id/mycart"
         android:icon="@drawable/ic_shopping_cart_black_24dp"
         android:title="My Cart"/>
+
+    <item android:id="@+id/order"
+        android:icon="@drawable/orders"
+        android:title="My Orders"/>
+
+    <item android:id="@+id/loginagn"
+        android:icon="@drawable/ic_person_black_24dp"
+        android:title="Login/Register"/>
 
 </menu>
